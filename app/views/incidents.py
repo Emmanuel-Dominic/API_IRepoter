@@ -1,11 +1,11 @@
 """views file for create, edit, get and delete redflad incidents"""
 from flask import Blueprint, jsonify, request, Response, json
-from app.models.incident import Incident
+from models.incident import Incident
 
 
 incident_bp = Blueprint('incident_bp', __name__, url_prefix='/api/v1')
 
-incident_db = [
+incidents_db = [
     Incident(
         location={"location_long":"0.39737", "location_lat":"9.38974"},
         createdOn="2018-11-25 22:41:14",
@@ -20,7 +20,7 @@ incident_db = [
         location={"location_long":"0.33737", "location_lat":"5.38974"},
         createdOn="2018-08-24 02:31:14",
         createdBy="2",
-        type=intervention,
+        type='intervention',
         # status="resolved",
         images="2.jpeg",
         videos="2.gif",
@@ -30,7 +30,7 @@ incident_db = [
         location={"location_long":"0.39737", "location_lat":"9.38974"},
         createdOn="2018-11-25 22:41:14",
         createdBy="2",
-        type=redflag,
+        type='redflag',
         # status="rejected",
         images="3.jpeg",
         videos="3.gif",
@@ -48,7 +48,7 @@ def get_all_redflags():
             redflags_list.append(redflag.get_incident_details())
             return jsonify({
                 "status": 200,
-                "data": redflags_list,
+                "data": redflags_list['type']
             }), 200
         return jsonify({
             "status": 404,
